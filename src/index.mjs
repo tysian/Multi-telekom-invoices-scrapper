@@ -32,7 +32,7 @@ dotenv.config();
 
   // GO TO LOGIN PAGE
   await page.goto(BASE_URL);
-  await page.screenshot({ path: 'screenshots/1-login-page.png' });
+  // await page.screenshot({ path: 'screenshots/1-login-page.png' });
   log('Opened login page', 'success');
 
   // FILL INPUTS
@@ -73,10 +73,10 @@ dotenv.config();
       const errorMsg = await errorElement.evaluate((el) => el.textContent);
       const errorText = errorMsg ? `Page error: ${errorMsg}` : MESSAGES.DEFAULT_ERROR;
 
-      // await page.screenshot({ path: 'screenshots/3-blad-logowania.png' });
+      await page.screenshot({ path: 'screenshots/3-blad-logowania.png' });
       writeError({ msg: errorText });
     } else {
-      // await page.screenshot({ path: 'screenshots/3-blad-logowania.png' });
+      await page.screenshot({ path: 'screenshots/3-blad-logowania.png' });
       writeError({ msg: MESSAGES.DEFAULT_ERROR });
     }
     await browser.close();
@@ -138,6 +138,7 @@ dotenv.config();
     }
   }
 
+  log('Downloaded, moved, copied. Everythings good.', 'success');
   // CLOSE
   await browser.close();
 })();

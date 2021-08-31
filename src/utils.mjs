@@ -49,9 +49,11 @@ export async function downloadFile(url, file, options = {}) {
         writeError({ stack: err });
       }
     }
+  } else {
+    log('Info: No copy to directory');
   }
 
-  if (config.moveTo) {
+  if (config.moveTo.length) {
     try {
       fs.copyFile(downloadsDestFilename, `${config.moveTo}/${file}`, (err) => {
         if (err) writeError({ msg: 'Copying error', stack: err });
@@ -62,5 +64,7 @@ export async function downloadFile(url, file, options = {}) {
     } catch (err) {
       writeError({ stack: err });
     }
+  } else {
+    log('Info: No move to directory');
   }
 }
